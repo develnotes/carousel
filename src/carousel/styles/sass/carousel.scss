@@ -1,0 +1,73 @@
+.carousel-container {
+    height: 100%;
+    max-height: 100%;
+}
+
+.carousel {
+    position: relative;
+    height: calc(100% - 3rem);
+    max-height: 100%;
+    display: flex;
+    
+    &__button {
+        position: relative;
+        z-index: 1000;
+        opacity: 0.35;
+        padding: 0;
+
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        &--left {
+            left: 0;
+            color: inherit;
+        }
+
+        &--right {
+            right: 0;
+            color: inherit;
+        }
+
+        &:hover {
+            opacity: 1;
+            transition: opacity 0.35s;
+        }
+    }
+
+    &__list {
+        list-style: none;
+
+        &__item {
+            display: flex;
+            justify-content: center;
+            min-width: 100%;
+        }
+
+        max-width: 100%;
+
+        display: flex;
+        overflow: hidden;
+    }
+}
+
+.carousel-scroll-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+    height: 3rem;
+    padding: 1rem;
+    
+    &__step {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 100%;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    .active {
+        background-color: darkgray;
+    }
+}
