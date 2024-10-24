@@ -6,8 +6,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/main.js",
-  "module": "./dist/carousel.js",
+  "module": "./dist/main.js",
   "exports": {
     ".": {
       "types": "./dist/lib/main.d.ts",
