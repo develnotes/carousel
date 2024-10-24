@@ -1,5 +1,5 @@
 import { useScroll } from "./useScroll";
-import { IconChevronLeft, IconChevronRight } from "./components/icons";
+import { IconChevronLeft, IconChevronRight } from "./icons";
 import "./styles/css/index.css";
 
 /* https://stackoverflow.com/questions/53958028/how-to-use-generics-in-props-in-react-in-a-functional-component

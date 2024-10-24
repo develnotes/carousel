@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/carousel/Carousel.tsx","./src/carousel/index.ts","./src/carousel/useScroll.ts","./src/carousel/components/icons/IconChevronLeft.tsx","./src/carousel/components/icons/IconChevronRight.tsx","./src/carousel/components/icons/index.ts","./lib/main.ts","./lib/vite-env.d.ts"],"errors":true,"version":"5.6.3"}
