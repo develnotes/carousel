@@ -7,7 +7,7 @@ import "./styles/css/index.css";
 
 interface Props<T> {
     list: T[],
-    renderComponent: ({ item }: { item: T }) => React.JSX.Element,
+    renderComponent: (item: T) => React.JSX.Element,
 }
 
 const Carousel = (<T extends object & { id?: string, key?: string }>({ list, renderComponent }: Props<T>) => {
@@ -27,7 +27,7 @@ const Carousel = (<T extends object & { id?: string, key?: string }>({ list, ren
                         list.map(item => {
                             return (
                                 <li className="carousel__list__item" key={item.key || item.id}> {/* Item must have a property id */}
-                                    {renderComponent({ item })}
+                                    {renderComponent(item)}
                                 </li>
                             );
                         })

@@ -1,4 +1,4 @@
-import Carousel from "../lib/Carousel";
+import Carousel from "../lib/main";
 
 function App() {
 
@@ -30,17 +30,19 @@ function App() {
 		}
 	];
 
-	const renderPost = ({ item }: { item: Post }) => {
+	const Post = ({props}: {props: Post}) => {
 		return (
 			<div className="post">
-				<h2 className="post__title">{item.title}</h2>
-				<h3 className="post__author">{item.author}</h3>
+				<h2 className="post__title">{props.title}</h2>
+				<h3 className="post__author">{props.author}</h3>
 				<div className="post__image">
-					<img src={item.image} alt="post image" />
+					<img src={props.image} alt="post image" />
 				</div>
 			</div>
 		);
 	};
+
+	const renderPost = (item: Post) => <Post props={item} />;
 
 	return (
 		<div className="app">
