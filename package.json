@@ -1,7 +1,7 @@
 {
   "name": "@develnotes/carousel",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "files": [
     "dist"
@@ -24,9 +24,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "sass": "sass ./lib/styles/sass/carousel.scss ./lib/styles/css/index.css --watch"
-  },
-  "dependencies": {
-    "@tabler/icons-react": "^3.19.0"
   },
   "peerDependencies": {
     "react": "^18.3.1",
