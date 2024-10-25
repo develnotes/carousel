@@ -13,7 +13,10 @@ export const useScroll = () => {
                 el.classList.remove("active");
             });
 
-            indicator.children[focused.current].classList.add("active");
+            const el = indicator.children[focused.current];
+            if (el) {
+                el.classList.add("active");
+            }
         }
     }, []);
 
@@ -31,9 +34,8 @@ export const useScroll = () => {
             }
 
             const indicator = indicatorRef.current;
-            if (indicator) {
-                setIndicatorFocus(indicator);
-            }
+            setIndicatorFocus(indicator);
+
         }
     }, [focused, setIndicatorFocus]);
 
@@ -79,6 +81,14 @@ export const useScroll = () => {
 
         window.addEventListener("resize", onResize);
 
+        const resizeObserver = new ResizeObserver(() => {
+            onResize();
+        });
+
+        if (ctn) {
+            resizeObserver.observe(ctn);
+        }
+
         if (ctn) {
             ctn.childNodes.forEach(() => {
                 const el = document.createElement("div");
@@ -88,7 +98,7 @@ export const useScroll = () => {
                     setIndicatorFocus(indicator);
                 }
             });
-            
+
             if (indicator) {
                 const list = ctn.children;
                 indicator.childNodes.forEach((child, index) => {
@@ -108,6 +118,10 @@ export const useScroll = () => {
                 indicator.innerHTML = "";
             }
             window.removeEventListener("resize", onResize);
+
+            if (ctn) {
+                resizeObserver.unobserve(ctn);
+            }
         }
     }, [focused, setIndicatorFocus]);
 
