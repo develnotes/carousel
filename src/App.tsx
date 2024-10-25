@@ -1,15 +1,21 @@
 import Carousel from "../lib/main";
+import { examples } from "./code/examples";
+import hljs from "highlight.js";
+import "highlight.js/styles/atom-one-dark.css";
+import { useEffect, useState } from "react";
+import { IconBrandGithubFilled } from "@tabler/icons-react";
+
 
 function App() {
 
-	type Post = {
+	type Card = {
 		id: string,
 		title: string,
 		author: string,
 		image: string,
 	}
 
-	const posts: Post[] = [
+	const cards: Card[] = [
 		{
 			id: "0",
 			title: "First post",
@@ -30,28 +36,64 @@ function App() {
 		}
 	];
 
-	const Post = ({props}: {props: Post}) => {
+	const Card = ({ props }: { props: Card }) => {
 		return (
-			<div className="post">
-				<h2 className="post__title">{props.title}</h2>
-				<h3 className="post__author">{props.author}</h3>
-				<div className="post__image">
-					<img src={props.image} alt="post image" />
+			<div className="card">
+				<h2 className="card__title">{props.title}</h2>
+				<h3 className="card__author">{props.author}</h3>
+				<div className="card__image">
+					<img src={props.image} alt="Card image" />
 				</div>
 			</div>
 		);
 	};
 
-	const renderPost = (item: Post) => <Post props={item} />;
+	const renderCard = (item: Card) => <Card props={item} />;
+
+	const [showCode, setShowCode] = useState<boolean>(false);
+
+	useEffect(() => {
+		hljs.highlightAll();
+
+		return () => {
+			document.querySelectorAll("code").forEach(el => {
+				el.removeAttribute("data-highlighted");
+			})
+		}
+	}, [showCode]);
+
 
 	return (
 		<div className="app">
 
-			<div className="my-carousel">
-				<Carousel list={posts} renderComponent={renderPost} />
-			</div>
+			<h1>Carousel Demo App</h1>
+
+			<section>
+				<div className="cards">
+					<Carousel list={cards} renderComponent={renderCard} />
+				</div>
+				{
+					showCode &&
+					<div className="code">
+						<pre><code className="language-javascript">{examples[0]}</code></pre>
+					</div>
+				}
+			</section>
+			<button className="button" onClick={() => {
+				if (showCode) {
+					setShowCode(false);
+				} else {
+					setShowCode(true);
+				}
+			}}>{showCode ? "Hide code" : "Show code"}</button>
+
+			<footer className="footer">
+				<div className="footer__copy-and-name">&copy; 2024 - Carousel Demo App</div>
+				<div className="footer__separator"></div>
+				<div className="footer__github-link"><a href="https://github.com/develnotes/carousel-demo-app"><IconBrandGithubFilled size={18} /></a></div>
+			</footer>
 		</div>
-	)
+	);
 }
 
 export default App;
