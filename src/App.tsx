@@ -8,6 +8,32 @@ import { IconBrandGithubFilled } from "@tabler/icons-react";
 
 function App() {
 
+	return (
+		<div className="app">
+
+			<h1>Carousel Demo App</h1>
+
+			<Section />
+
+			<Section />
+
+			<Section />
+
+			<footer className="footer">
+				<div className="footer__copy-and-name">&copy; 2024 - Carousel Demo App</div>
+				<div className="footer__separator"></div>
+				<div className="footer__github-link"><a href="https://github.com/develnotes/carousel-demo-app"><IconBrandGithubFilled size={18} /></a></div>
+			</footer>
+		</div>
+	);
+}
+
+export default App;
+
+
+
+const Section = () => {
+
 	type Card = {
 		id: string,
 		title: string,
@@ -62,13 +88,9 @@ function App() {
 		}
 	}, [showCode]);
 
-
 	return (
-		<div className="app">
-
-			<h1>Carousel Demo App</h1>
-
-			<section>
+		<section>
+			<div className="wrapper">
 				<div className="cards">
 					<Carousel list={cards} renderComponent={renderCard} />
 				</div>
@@ -78,7 +100,8 @@ function App() {
 						<pre><code className="language-javascript">{examples[0]}</code></pre>
 					</div>
 				}
-			</section>
+			</div>
+
 			<button className="button" onClick={() => {
 				if (showCode) {
 					setShowCode(false);
@@ -86,14 +109,6 @@ function App() {
 					setShowCode(true);
 				}
 			}}>{showCode ? "Hide code" : "Show code"}</button>
-
-			<footer className="footer">
-				<div className="footer__copy-and-name">&copy; 2024 - Carousel Demo App</div>
-				<div className="footer__separator"></div>
-				<div className="footer__github-link"><a href="https://github.com/develnotes/carousel-demo-app"><IconBrandGithubFilled size={18} /></a></div>
-			</footer>
-		</div>
+		</section>
 	);
 }
-
-export default App;
