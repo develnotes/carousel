@@ -26,10 +26,10 @@ export const useScroll = () => {
             const list = ctn.children;
             if (focused.current > 0) {
                 focused.current -= 1;
-                list[focused.current].scrollIntoView({ behavior: "smooth" });
+                list[focused.current].scrollIntoView({ behavior: "smooth", block: "nearest" });
             }
             else {
-                list[list.length - 1].scrollIntoView({ behavior: "smooth" });
+                list[list.length - 1].scrollIntoView({ behavior: "smooth", block: "nearest" });
                 focused.current = list.length - 1;
             }
 
@@ -44,9 +44,9 @@ export const useScroll = () => {
             const list = ctn.children;
             if (focused.current < list.length - 1) {
                 focused.current += 1;
-                list[focused.current].scrollIntoView({ behavior: "smooth" });
+                list[focused.current].scrollIntoView({ behavior: "smooth", block: "nearest" });
             } else {
-                list[0].scrollIntoView({ behavior: "smooth" });
+                list[0].scrollIntoView({ behavior: "smooth", block: "nearest" });
                 focused.current = 0;
             }
 
@@ -100,7 +100,7 @@ export const useScroll = () => {
                 indicator.childNodes.forEach((child, index) => {
                     const el = child as HTMLDivElement;
                     el.addEventListener("click", () => {
-                        list[index].scrollIntoView({ behavior: "smooth" });
+                        list[index].scrollIntoView({ behavior: "smooth", block: "nearest" });
                         focused.current = index;
                         setIndicatorFocus(indicator);
                     });
