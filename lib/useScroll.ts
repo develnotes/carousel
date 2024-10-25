@@ -35,7 +35,6 @@ export const useScroll = () => {
 
             const indicator = indicatorRef.current;
             setIndicatorFocus(indicator);
-
         }
     }, [focused, setIndicatorFocus]);
 
@@ -50,10 +49,8 @@ export const useScroll = () => {
                 list[0].scrollIntoView({ behavior: "smooth" });
                 focused.current = 0;
             }
-        }
 
-        const indicator = indicatorRef.current;
-        if (indicator) {
+            const indicator = indicatorRef.current;
             setIndicatorFocus(indicator);
         }
     }, [focused, setIndicatorFocus]);
@@ -64,18 +61,17 @@ export const useScroll = () => {
 
         const resetView = () => {
             if (ctn) {
-                const list = ctn.children;
-                list[0].scrollIntoView({ behavior: "instant" });
+                ctn.scrollTo({ behavior: "instant", left: 0 })
             }
         }
 
         resetView();
 
         const onResize = () => {
-            const ctn = ref.current;
             if (ctn) {
                 const list = ctn.children;
-                list[focused.current].scrollIntoView({ behavior: "instant" });
+                const item = list[focused.current];
+                ctn.scrollTo({ behavior: "instant", left: focused.current * item.clientWidth })
             }
         };
 
@@ -112,12 +108,12 @@ export const useScroll = () => {
             }
         }
 
-
         return () => {
             if (indicator) {
                 indicator.innerHTML = "";
             }
-            window.removeEventListener("resize", onResize);
+            
+            document.removeEventListener("resize", onResize);
 
             if (ctn) {
                 resizeObserver.unobserve(ctn);
